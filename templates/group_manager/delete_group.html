@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Group</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            margin: 20px 0;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="submit"] {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Delete Group</h2>
+        <p>Are you sure you want to delete group '{{ group.name }}'?</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
+</body>
+</html>

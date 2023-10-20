@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Group List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .action-buttons button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .action-buttons button:hover {
+            opacity: 0.8;
+        }
+        .add-group-button {
+            display: block;
+            width: 100px;
+            margin: 20px auto;
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-group-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of Groups</h2>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Members</th>
+            <th>Actions</th>
+        </tr>
+        {% for group in groups %}
+        <tr>
+            <td>{{ group.id }}</td>
+            <td>{{ group.name }}</td>
+            <td>{{ group.description }}</td>
+            <td>
+                <ul>
+                    {% for member in group.members.all %}
+                        <li>{{ member.username }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td class="action-buttons">
+                <a href="{% url 'edit_group' group.id %}">Edit</a>
+                <a href="{% url 'delete_group' group.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'add_group' %}" class="add-group-button">Add Group</a>
+</body>
+</html>
